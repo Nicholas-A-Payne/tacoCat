@@ -102,3 +102,7 @@ main>.container {
       color: var(--NP-secondary-color);
       opacity: .90;
   }
+
+  .btmLogo{
+      font-family: 'Limelight', cursive;
+  }
