@@ -3,14 +3,10 @@
 function getText(){
 
     let userString = document.getElementById("userInput").value;
-    let isPalindrome = checkPalindrome(userString);
-
-
-    //Cekcing for Palindrome
-    checkPalindrome(userString);
+    let returnObj = checkPalindrome(userString);
 
      //calling display data
-     displayData(isPalindrome);
+     displayData(returnObj);
 
 }
 
@@ -18,6 +14,9 @@ function getText(){
 function checkPalindrome(userString){
 
     userString = userString.toLowerCase();
+    let isPalindrome = false;
+    let returnObj = {};
+    
 
     let regex = /[^a-z0-9]/gi;
 
@@ -29,20 +28,27 @@ function checkPalindrome(userString){
     }
 
     if (reverseString == userString) {
-        return true;
+        isPalindrome = true;
     }
     else{
-        return false;
+        isPalindrome = false;
     }
+
+    returnObj["IsPalindrome"] = isPalindrome;
+    returnObj["revString"] = reverseString;
+
+    return returnObj;
     
 }
 
 //Display Data Function---------------------------------------------------------------------------------------------------------------
-function displayData(isPalindrome) {
-    if(isPalindrome == true){
+function displayData(returnObj) {
+    if(returnObj["IsPalindrome"] == true){
+        document.getElementById("results").innerHTML = `Your phrase reversed is: ${returnObj["revString"]}`
          Swal.fire('Neat! Your Phrase is a Palindrome');
     }
     else{ 
+        document.getElementById("results").innerHTML = `Your phrase reversed is: ${returnObj["revString"]}`
         Swal.fire('OOPS! Your Phrase is not a Palindrome');
     }
 
